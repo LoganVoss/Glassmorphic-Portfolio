@@ -1,26 +1,143 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Glassmorphic Styles */
+.glassmorphic-body {
+  background: linear-gradient(to right, #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #ffc6ff);
+  color: #333;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark .glassmorphic-body {
+  background: linear-gradient(to right, #ffadad80, #ffd6a580, #fdffb680, #caffbf80, #9bf6ff80, #a0c4ff80, #bdb2ff80, #ffc6ff80);
+  color: #f8fafc;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.glassmorphic-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.glassmorphic-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.glassmorphic-card:hover {
+  transform: translateY(-5px);
+}
+
+.glassmorphic-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.8s ease;
+  pointer-events: none;
+}
+
+.glassmorphic-card:hover::before {
+  left: 100%;
+}
+
+.main-card {
+  max-width: 900px;
+  text-align: center;
+}
+
+.name-title {
+  font-size: 4rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  opacity: 0.8;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 2.4rem;
+  line-height: 1.6;
+}
+
+.social-links {
+  display: flex;
+  gap: 111px;
+  justify-content: center;
+}
+
+.social-button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
+}
+
+.social-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  width: 150%;
+  margin-top: 30px;
+}
+
+.info-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+}
+
+.job, .skill-item, .app-item {
+  margin-bottom: 16px;
+  margin-left: 50px;
+}
+
+.job h3, .skill-item h3, .app-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.job p, .duration {
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.app-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s;
+}
+
+.app-link:hover {
+  opacity: 0.8;
+}
+
+.job-icon, .app-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  margin-right: 2rem;
 }
